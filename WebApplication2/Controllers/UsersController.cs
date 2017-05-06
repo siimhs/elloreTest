@@ -8,18 +8,17 @@ namespace WebApplication2.Controllers
 {
     public class UsersController : ApiController
     {
-        List<UserModel> users;
         UsersRepository repository;
 
         public UsersController(UsersRepository repository)
         {
             this.repository = repository;
-            users = repository.Get().ToList();
         }
 
         public IHttpActionResult Get()
         {
-            return Ok(users);
+            var result = repository.Get();
+            return Ok(result);
         }
         public IHttpActionResult Get(string find)
         {
