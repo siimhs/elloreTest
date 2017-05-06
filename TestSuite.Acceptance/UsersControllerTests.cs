@@ -8,6 +8,7 @@ using Microsoft.Practices.Unity;
 using Newtonsoft.Json;
 using System;
 using Domain;
+using DAL;
 
 namespace TestSuite.Acceptance
 {
@@ -20,7 +21,7 @@ namespace TestSuite.Acceptance
 
         public UsersControllerTests()
         {
-            controller = new UsersController();
+            controller = new UsersController(new UsersRepository());
             container = new UnityContainer();
             client = SetupFakeServer();
             usersUrl = "http://localhost:5000/api/Users/";
