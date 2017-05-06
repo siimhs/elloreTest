@@ -105,6 +105,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{51BE78DB-C03A-4B5C-B96C-EA73928C958D}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{1a7a3cfa-698c-45e5-b4a7-577356bc8836}</Project>
       <Name>Domain</Name>
