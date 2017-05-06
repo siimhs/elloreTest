@@ -23,7 +23,7 @@ namespace WebApplication2.Controllers
         }
         public IHttpActionResult Get(string find)
         {
-            var result = users.Where(x => x.Name.Equals(find));
+            var result = repository.Get(find);
 
             return Ok(result);
         }
