@@ -3,11 +3,11 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApplication2.Configuration;
 using WebApplication2.Controllers;
-using WebApplication2.Models;
 using Xunit;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json;
 using System;
+using Domain;
 
 namespace TestSuite.Acceptance
 {

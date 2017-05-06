@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Domain;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
