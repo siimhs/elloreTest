@@ -1,6 +1,7 @@
 ﻿using Domain;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace DAL
 {
@@ -14,7 +15,7 @@ namespace DAL
             cars = PopulateCarsList();
             users = PopulateUsersList();
         }
-        
+
         private List<CarModel> PopulateCarsList()
         {
             CarModel carModel = new CarModel();
@@ -34,6 +35,11 @@ namespace DAL
         public IEnumerable<UserModel> Get()
         {
             return users;
+        }
+
+        public IEnumerable<UserModel> Get(string name)
+        {
+            return users.Where(x => x.Name.Equals(name));
         }
     }
 }
