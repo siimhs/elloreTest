@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using WebApplication2.Models;
@@ -8,18 +9,13 @@ namespace WebApplication2.Controllers
     public class UsersController : ApiController
     {
         List<UserModel> users;
+
         public UsersController()
         {
-            CarModel carModel = new CarModel();
-            List<CarModel> cars = carModel.FillCars();
-
-            users = new List<UserModel>
-            {
-                new UserModel {id=0,Name="Teet",Cars=cars[0]},
-                new UserModel {id=1,Name="Teet",Cars=cars[2]},
-                new UserModel {id=2,Name="Simmo",Cars=cars[1]}
-            };
+            var repo = new UsersRepository();
+            users = repo.Get().ToList();            
         }
+
         public IHttpActionResult Get()
         {
             return Ok(users);
@@ -90,6 +86,32 @@ namespace WebApplication2.Controllers
                 return NotFound();
             }
             return Ok(users[id]);
+        }
+    }
+
+    public class UsersRepository
+    {
+        private List<CarModel> cars;
+
+        public UsersRepository()
+        {
+            cars = PopulateCarsList();
+        }
+
+        private List<CarModel> PopulateCarsList()
+        {
+            CarModel carModel = new CarModel();
+            return carModel.FillCars();
+        }
+
+        public IEnumerable<UserModel> Get()
+        {
+            return new List<UserModel>
+            {
+                new UserModel {id=0,Name="Teet",Cars=cars[0]},
+                new UserModel {id=1,Name="Teet",Cars=cars[2]},
+                new UserModel {id=2,Name="Simmo",Cars=cars[1]}
+            };
         }
     }
 }
