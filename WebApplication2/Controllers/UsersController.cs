@@ -9,11 +9,12 @@ namespace WebApplication2.Controllers
     public class UsersController : ApiController
     {
         List<UserModel> users;
+        UsersRepository repository;
 
         public UsersController()
         {
-            var repo = new UsersRepository();
-            users = repo.Get().ToList();            
+            repository = new UsersRepository();
+            users = repository.Get().ToList();            
         }
 
         public IHttpActionResult Get()
