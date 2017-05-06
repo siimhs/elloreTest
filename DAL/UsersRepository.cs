@@ -32,6 +32,60 @@ namespace DAL
             };
         }
 
+        public IEnumerable<UserModel> Get(string find, string sort)
+        {
+            var result = users.Where(x => x.Name.Equals(find)).ToList();
+            var splitSort = sort.Split(':');
+            var sortBy = splitSort[0];
+            var OrderBy = splitSort[1];
+            bool isDesc = true;
+            switch (OrderBy)
+            {
+                case "asc":
+                    isDesc = false;
+                    break;
+                default:
+                    isDesc = true;
+                    break;
+            }
+            switch (sortBy)
+            {
+                case "name":
+                    if (isDesc)
+                    {
+                        result = result.OrderByDescending(x => x.Name).ToList();
+                    }
+                    else
+                    {
+                        result = result.OrderBy(x => x.Name).ToList();
+                    }
+                    break;
+                case "cars":
+                    if (isDesc)
+                    {
+                        result = result.OrderByDescending(x => x.Cars).ToList();
+                    }
+                    else
+                    {
+                        result = result.OrderBy(x => x.Cars).ToList();
+                    }
+                    break;
+                case "id":
+                    if (isDesc)
+                    {
+                        result = result.OrderByDescending(x => x.id).ToList();
+                    }
+                    else
+                    {
+                        result = result.OrderBy(x => x.id).ToList();
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+
         public IEnumerable<UserModel> Get()
         {
             return users;
