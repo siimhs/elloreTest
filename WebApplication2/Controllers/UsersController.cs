@@ -17,6 +17,12 @@ namespace WebApplication2.Controllers
             users = repository.Get().ToList();            
         }
 
+        public UsersController(UsersRepository repository)
+        {
+            this.repository = repository;
+            users = repository.Get().ToList();
+        }
+
         public IHttpActionResult Get()
         {
             return Ok(users);
