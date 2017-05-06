@@ -82,11 +82,9 @@ namespace WebApplication2.Controllers
         }
         public IHttpActionResult Get(int id)
         {
-            if (id>users.Count-1)
-            {
-                return NotFound();
-            }
-            return Ok(users[id]);
+            var user = repository.Get(id);
+
+            return user == null ? (IHttpActionResult)NotFound() : Ok(user);            
         }
     }    
 }

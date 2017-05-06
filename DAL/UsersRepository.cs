@@ -37,6 +37,15 @@ namespace DAL
             return users;
         }
 
+        public UserModel Get(int id)
+        {
+            if (id > users.Count() - 1)
+            {
+                return null;
+            }
+            return users.Where(x => x.id == id).First();
+        }
+
         public IEnumerable<UserModel> Get(string name)
         {
             return users.Where(x => x.Name.Equals(name));
