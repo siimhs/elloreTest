@@ -11,12 +11,6 @@ namespace WebApplication2.Controllers
         List<UserModel> users;
         UsersRepository repository;
 
-        public UsersController()
-        {
-            repository = new UsersRepository();
-            users = repository.Get().ToList();            
-        }
-
         public UsersController(UsersRepository repository)
         {
             this.repository = repository;
