@@ -32,9 +32,9 @@ namespace DAL
             };
         }
 
-        public IEnumerable<UserModel> Get(string find, string sort)
+        public IEnumerable<UserModel> GetBy(string name, string sort)
         {
-            var result = users.Where(x => x.Name.Equals(find)).ToList();
+            var result = users.Where(x => x.Name.Equals(name)).ToList();
             var splitSort = sort.Split(':');
             var sortBy = splitSort[0];
             var OrderBy = splitSort[1];
@@ -86,12 +86,12 @@ namespace DAL
             return result;
         }
 
-        public IEnumerable<UserModel> Get()
+        public IEnumerable<UserModel> GetAll()
         {
             return users;
         }
 
-        public UserModel Get(int id)
+        public UserModel GetBy(int id)
         {
             if (id > users.Count() - 1)
             {
@@ -100,7 +100,7 @@ namespace DAL
             return users.Where(x => x.id == id).First();
         }
 
-        public IEnumerable<UserModel> Get(string name)
+        public IEnumerable<UserModel> GetBy(string name)
         {
             return users.Where(x => x.Name.Equals(name));
         }

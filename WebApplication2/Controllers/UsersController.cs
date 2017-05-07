@@ -20,7 +20,7 @@ namespace WebApplication2.Controllers
         [Route("")]
         public IHttpActionResult GetAllUsers()
         {
-            var result = repository.Get();
+            var result = repository.GetAll();
             return Ok(result);
         }
 
@@ -28,7 +28,7 @@ namespace WebApplication2.Controllers
         [Route("")]
         public IHttpActionResult GetUsersBy([FromUri(Name = "find")] string name)
         {
-            var result = repository.Get(name);
+            var result = repository.GetBy(name);
 
             return Ok(result);
         }
@@ -37,7 +37,7 @@ namespace WebApplication2.Controllers
         [Route("")]
         public IHttpActionResult GetUsersBy([FromUri(Name = "find")] string name, [FromUri] string sort)
         {
-            IEnumerable<UserModel> result = repository.Get(name, sort);
+            IEnumerable<UserModel> result = repository.GetBy(name, sort);
             return Ok(result);
         }
 
@@ -45,7 +45,7 @@ namespace WebApplication2.Controllers
         [Route("{id}")]
         public IHttpActionResult GetUsersBy(int id)
         {
-            var user = repository.Get(id);
+            var user = repository.GetBy(id);
 
             return user == null ? (IHttpActionResult)NotFound() : Ok(user);            
         }
