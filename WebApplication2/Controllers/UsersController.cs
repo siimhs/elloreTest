@@ -6,6 +6,7 @@ using System.Web.Http;
 
 namespace WebApplication2.Controllers
 {
+    [RoutePrefix("api/Users")]
     public class UsersController : ApiController
     {
         UsersRepository repository;
@@ -15,23 +16,34 @@ namespace WebApplication2.Controllers
             this.repository = repository;
         }
 
-        public IHttpActionResult Get()
+        [HttpGet]
+        [Route("")]
+        public IHttpActionResult GetAllUsers()
         {
             var result = repository.Get();
             return Ok(result);
         }
-        public IHttpActionResult Get(string find)
+
+        [HttpGet]
+        [Route("")]
+        public IHttpActionResult GetUsersBy([FromUri(Name = "find")] string name)
         {
-            var result = repository.Get(find);
+            var result = repository.Get(name);
 
             return Ok(result);
         }
-        public IHttpActionResult Get(string find, string sort)
+
+        [HttpGet]
+        [Route("")]
+        public IHttpActionResult GetUsersBy([FromUri(Name = "find")] string name, [FromUri] string sort)
         {
-            IEnumerable<UserModel> result = repository.Get(find, sort);
+            IEnumerable<UserModel> result = repository.Get(name, sort);
             return Ok(result);
         }
-        public IHttpActionResult Get(int id)
+
+        [HttpGet]
+        [Route("{id}")]
+        public IHttpActionResult GetUsersBy(int id)
         {
             var user = repository.Get(id);
 
